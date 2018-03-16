@@ -1,7 +1,7 @@
 
 public class Main {
 	public static void main(String[] args) {
-		BinarySearchTree<Integer, Integer> bst = new BinarySearchTree<>();
+		BinarySearchTreeAVL<Integer, Integer> bst = new BinarySearchTreeAVL();
 		bst.insert(4, 4);
 		bst.insert(2, 2);
 		bst.insert(1, 1);
