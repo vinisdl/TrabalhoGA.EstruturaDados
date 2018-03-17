@@ -19,6 +19,11 @@ public class Main {
 		inserItems(avl,values);		
 		insertAvl = System.currentTimeMillis() - insertAvl;
 		
+		long insertBst = System.currentTimeMillis();		
+		inserItems(bst,values);		
+		insertBst = System.currentTimeMillis() - insertBst;
+		
+		
 	}
 	
 	
