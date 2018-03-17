@@ -1,14 +1,17 @@
 
 public class Main {
 	public static void main(String[] args) {
-		BinarySearchTreeAVL<Integer, Integer> bst = new BinarySearchTreeAVL();
-		bst.insert(4, 4);
-		bst.insert(2, 2);
-		bst.insert(1, 1);
-		bst.insert(3, 3);
-		bst.insert(6, 6);
-		bst.insert(5, 5);
-		bst.insert(7, 7);
-		bst.levelOrder();
+		BinarySearchTreeAVL<Integer, Integer> avl = new BinarySearchTreeAVL<Integer, Integer>();
+		BinarySearchTree<Integer, Integer> bst = new BinarySearchTree<Integer, Integer>();
+
+		for (int i = 0; i < 6; i++) {
+			avl.insert(i, i);
+			bst.insert(i, i);
+		}
+		
+		System.out.println(bst.toString());
+		
+		System.out.println(avl.toString());
+
 	}
 }	
