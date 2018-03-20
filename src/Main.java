@@ -34,24 +34,26 @@ public class Main {
 		System.out.println(untilLeafAvl +"\t"+ "avl até a folha");
 		
 		//Procura um elemento no meio do array
+		int valor = values.length / 2;
 		long middleBst = System.nanoTime();
-		bst.search(values[values.length / 2]);
+		bst.search(values[valor]);
 		middleBst = System.nanoTime() - middleBst;
 		System.out.println(middleBst +"\t"+ "bst meio do array");
 		
 		long middleAvl = System.nanoTime();
-		avl.search(values[values.length / 2]);
+		avl.search(values[valor]);
 		middleAvl = System.nanoTime() - middleAvl;
 		System.out.println(middleAvl +"\t"+ "avl meio do array");
 		
 		//Procura um elemento aleatorio no array
+		int valor2 = ((int)(Math.random()*values.length-1)+1);
 		long randomBst = System.nanoTime();
-		bst.search(values[((int)(Math.random()*values.length-1)+1)]);
+		bst.search(values[valor2]);
 		randomBst = System.nanoTime() - randomBst;
 		System.out.println(randomBst +"\t"+ "bst elemento aleatorio");
 		
 		long randomAvl = System.nanoTime();
-		avl.search(values[((int)(Math.random()*values.length-1)+1)]);
+		avl.search(values[valor2]);
 		randomAvl = System.nanoTime() - randomAvl;
 		System.out.println(randomAvl +"\t"+ "avl elemento aleatorio");
 		
