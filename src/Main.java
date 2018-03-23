@@ -2,6 +2,22 @@
 
 public class Main {
 	public static void main(String[] args) {
+		BinarySearchTree<Integer, Integer> bst = new BinarySearchTree<Integer, Integer>();
+		
+		int[] values = new int[10];
+
+		for (int i = 0; i < values.length-1; i++) {
+			values[i] = (int)((Math.random()*values.length)+1);			
+		}
+		inserItems(bst,values);	
+		
+		System.out.println(bst.toString());
+		System.out.println(bst.countInternalNodes());
+		
+	}
+	
+	
+	public void Trabalho1() {
 		BinarySearchTreeAVL<Integer, Integer> avl = new BinarySearchTreeAVL<Integer, Integer>();
 		BinarySearchTree<Integer, Integer> bst = new BinarySearchTree<Integer, Integer>();
 			
@@ -55,9 +71,7 @@ public class Main {
 		long randomAvl = System.nanoTime();
 		avl.search(values[valor2]);
 		randomAvl = System.nanoTime() - randomAvl;
-		System.out.println(randomAvl +"\t"+ "avl elemento aleatorio");
-		
-		
+		System.out.println(randomAvl +"\t"+ "avl elemento aleatorio");			
 	}
 	
 	

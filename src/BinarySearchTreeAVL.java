@@ -232,26 +232,37 @@ public class BinarySearchTreeAVL<K extends Comparable<K>,V> implements IBinarySe
     
     
     private void levelOrder(Node node) {
-    	Queue<Node> q = new ArrayDeque<>();
-    	
-    	
-    	
-    }
+	  if (node != null) {
+          Queue<Node> queue = new ArrayDeque<>();
+          queue.add(node);
+          while (!queue.isEmpty()) {
+              Node current = queue.remove();
+              System.out.print(current + " ");
 
-    
-    private Node levelGetNode(Node node) {
-    	if(node != null) {
-    		
-    	}
-    	return node;
+              if (current.left != null) queue.add(current.left);
+              if (current.right != null) queue.add(current.right);
+          }
+      }    	
     }
     
 	@Override
 	public int countNodes() {
 		// TODO Auto-generated method stub
-		return 0;
+		return countNodes(root);
 	}
 
+	private int countNodes(Node node) {
+		//prevent
+		if( node == null )
+			return 0;
+		//é uma folha
+		if( node.left == null && node.right == null ) {
+			return 1;
+		} else {
+			return 1 + countLeaves(node.left) + countLeaves(node.right);
+		}
+	}
+	
 	@Override
 	public int countInternalNodes() {
 		// TODO Auto-generated method stub
@@ -259,11 +270,22 @@ public class BinarySearchTreeAVL<K extends Comparable<K>,V> implements IBinarySe
 	}
 
 	@Override
-	public int countLeaves() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countLeaves() {		
+		return countLeaves(root);
 	}
 
+	private int countLeaves(Node node) {
+		//prevent
+		if( node == null )
+			return 0;
+		//é uma folha
+		if( node.left == null && node.right == null ) {
+			return 1;
+		} else {
+			return countLeaves(node.left) + countLeaves(node.right);
+		}
+	}
+		
 	@Override
 	public int degree(K key) {
 		// TODO Auto-generated method stub
