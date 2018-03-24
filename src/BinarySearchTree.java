@@ -230,11 +230,31 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearc
 	
 	// Faltam
 	@Override
-	public int degree(K key) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int degree(K key) {		
+		Node result = degree(root, key);
+		if(result == null)
+			return -1;		
+		int degree = 0;
+		if(result.left != null)
+			degree++;
+		if(result.right != null)
+			degree++;
+		return degree;
 	}
 
+	private Node degree(Node node, K key) {		
+		if (node == null) {
+            return null;
+        } else if (key.compareTo(node.key) == 0) {
+            return node;
+        }
+	  
+	  	Node left = degree(node.left, key);
+	  	Node rigth = degree(node.right, key);
+	  
+        return left == null ? rigth : left;
+	}
+	
 	@Override
 	public int degreeTree() {
 		// TODO Auto-generated method stub

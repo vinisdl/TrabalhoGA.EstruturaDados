@@ -12,7 +12,8 @@ public class Main {
 		inserItems(bst,values);	
 		
 		System.out.println(bst.toString());
-		System.out.println(bst.countInternalNodes());
+		System.out.println(values[3]);
+		System.out.println(bst.degree(values[3]));
 		
 	}
 	
