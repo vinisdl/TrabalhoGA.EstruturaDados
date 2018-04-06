@@ -1,4 +1,8 @@
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearchTreeADT<K, V>{
@@ -44,6 +48,16 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearc
         }
         return search(node.next(key), key);
     }
+    
+    private Node searchNode(Node node, K key) {
+        if (node == null) {
+            return null;
+        } else if (key.compareTo(node.key) == 0) {
+            return node;
+        }
+        return searchNode(node.next(key), key);
+    }
+    
     @Override
     public void insert(K key, V value) {
         root = insert(root, key, value);
@@ -257,39 +271,76 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearc
 	
 	@Override
 	public int degreeTree() {
-		// TODO Auto-generated method stub
+	//#TODO
+		
 		return 0;
 	}
 	
+	
 	@Override
 	public int height(K key) {
-		// TODO Auto-generated method stub
-		return 0;
+		Node node = searchNode(root,key);
+		return heigthTree(node);
 	}
 
 	@Override
 	public int heightTree() {
 		// TODO Auto-generated method stub
-		return 0;
+		return heigthTree(root);
 	}
 
+	private int heigthTree(Node node) {
+		if(node == null)
+			return 	0;
+		else 
+		  return 1 + Math.max(heigthTree(node.left),
+				  heigthTree(node.right));
+	}
+	
 	@Override
 	public int depth(K key) {
-		// TODO Auto-generated method stub
-		return 0;
+		Node node = searchNode(root, key);
+		return depth(node);
 	}
 
+	private int depth(Node node) {
+		if ( node == null )
+	        return 0;
+	    return 1 + depth(node.left) + depth(node.right);
+	}
+	
 	@Override
 	public String ancestors(K key) {
-		// TODO Auto-generated method stub
+		List<K> result = new ArrayList<K>();		
+		antecestors(root, key, result);	    
+		String s = "";
+		for (K k : result) {
+			s+= k.toString();
+		}
+		
 		return null;
 	}
 
+	private boolean antecestors(Node node, K target, List<K> result) {
+	    if (node == null) {
+	        return false;
+	    }
+	    if (node.value == target) {
+	        return true;
+	    }
+	    if (antecestors(node.left, target, result) || antecestors(node.right, target, result)) {
+	        result.add(node.key);
+	        return true;
+	    }
+
+	    return false;
+	}
+	
 	@Override
 	public String descendents(K key) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-    
+	   
 }
