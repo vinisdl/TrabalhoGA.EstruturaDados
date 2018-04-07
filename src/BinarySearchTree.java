@@ -1,10 +1,14 @@
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
+/*
+ *  Número do grupo: 8
+ *  Integrantes: Marco Vinicius Soares Dalalba, Marlon Gsuik, Taiyki So
+ * 
+ */
 public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearchTreeADT<K, V>{
     protected Node root;
 
@@ -271,11 +275,33 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearc
 	
 	@Override
 	public int degreeTree() {
-	//#TODO
+		List<Integer> all = new LinkedList<>();
 		
-		return 0;
+		degreeTree(root, all);
+		
+		return Collections.max(all);
 	}
 	
+	
+	private Node degreeTree(Node node, List<Integer> lst) {		
+		if (node == null) {
+            return null;
+        }	  
+		
+		int degree = 0;
+		if(node.left != null)
+			degree++;
+		if(node.right != null)
+			degree++;
+		if(degree == 0)
+			degree = -1;
+		lst.add(degree);
+		
+	  	Node left = degreeTree(node.left, lst);
+	  	Node rigth = degreeTree(node.right, lst);
+	  
+        return left == null ? rigth : left;
+	}
 	
 	@Override
 	public int height(K key) {
@@ -285,7 +311,6 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearc
 
 	@Override
 	public int heightTree() {
-		// TODO Auto-generated method stub
 		return heigthTree(root);
 	}
 
@@ -310,25 +335,25 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearc
 	}
 	
 	@Override
-	public String ancestors(K key) {
+	public String descendents(K key) {
 		List<K> result = new ArrayList<K>();		
-		antecestors(root, key, result);	    
+		descendents(root, key, result);	    
 		String s = "";
 		for (K k : result) {
-			s+= k.toString();
+			s+= k.toString() + " ";
 		}
 		
 		return null;
 	}
 
-	private boolean antecestors(Node node, K target, List<K> result) {
+	private boolean descendents(Node node, K target, List<K> result) {
 	    if (node == null) {
 	        return false;
 	    }
 	    if (node.value == target) {
 	        return true;
 	    }
-	    if (antecestors(node.left, target, result) || antecestors(node.right, target, result)) {
+	    if (descendents(node.left, target, result) || descendents(node.right, target, result)) {
 	        result.add(node.key);
 	        return true;
 	    }
@@ -337,10 +362,27 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearc
 	}
 	
 	@Override
-	public String descendents(K key) {
-		// TODO Auto-generated method stub
-		return null;
+	public String ancestors(K key) {
+		List<Node> nodes = new LinkedList<>();
+		antecestors(root, key, nodes);
+		String s = "";
+		for (Node node : nodes) {
+			s += node.key.toString() + " ";
+		}
+		return s;
 	}
 
-	   
+	private Node antecestors(Node node, K key, List<Node> nodes) {
+        if (node == null) {
+            return null;
+        } else if (key.compareTo(node.key) == 0) {
+            return node;
+        }
+        
+        Node result = antecestors(node.next(key), key, nodes);
+        if(result != null)
+        	nodes.add(node);
+        
+        return result;
+    }
 }
