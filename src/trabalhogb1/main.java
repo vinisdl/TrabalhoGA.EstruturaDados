@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class main {
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		int[] n = getLoopValues();	
 		
 		Integer[][] valoresCrescentes = new Integer[10][];
@@ -40,7 +40,7 @@ public class main {
 		for (int i = 0; i < 10; i++) {
 			System.out.printf("linha "+ (valoresAleatoriosRepetidos[i].length) +" -- %f %n", executaBubble(valoresAleatoriosRepetidos[i].clone()));			
 		}
-	}*/
+	}
 
 	private static double executaBubble(Integer[] values) {
 		
