@@ -7,7 +7,8 @@ import java.util.Queue;
 /*
  *  Número do grupo: 8
  *  Integrantes: Marco Vinicius Soares Dalalba, Marlon Gsuik, Taiyki So
- * 
+ *  Mais informações sobre a execução do trabalho podem ser encontradas
+ *  https://github.com/vinisdl/TrabalhoGA.EstruturaDados
  */
 public class BinarySearchTree<K extends Comparable<K>,V> implements IBinarySearchTreeADT<K, V>{
     protected Node root;

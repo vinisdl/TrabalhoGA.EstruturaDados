@@ -2,6 +2,22 @@
 
 public class Main {
 	public static void main(String[] args) {
+		QuadTree<Integer, Integer> quadTree = new QuadTree<>();
+				
+		quadTree.insert(2, 1, 3);
+		quadTree.insert(3, 1, 5);
+		quadTree.insert(4, 1, 3);
+		quadTree.insert(5, 1, 5);
+		quadTree.insert(7, 1, 4);
+		quadTree.insert(3, 1, 6);
+		
+		System.out.println(quadTree.mim());
+	
+		
+	}
+	
+		
+	public void degree() {
 		BinarySearchTree<Integer, Integer> bst = new BinarySearchTree<Integer, Integer>();
 		
 		int[] values = new int[10];
@@ -14,9 +30,7 @@ public class Main {
 		System.out.println(bst.toString());
 		System.out.println(values[3]);
 		System.out.println(bst.degree(values[3]));
-		
 	}
-	
 	
 	public void Trabalho1() {
 		BinarySearchTreeAVL<Integer, Integer> avl = new BinarySearchTreeAVL<Integer, Integer>();
