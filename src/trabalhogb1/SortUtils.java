@@ -5,28 +5,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SortUtils {
-	/*public static void main(String[] args) {
-	
-		double[] test = new double[10];
-		test[0] = 27633;
-		test[1] = 16974;
-		test[2] = 30396;
-		test[3] = 24081;
-		test[4] = 23686;
-		test[5] = 13816;
-		test[6] = 23291;
-		test[7] = 21317;
-		test[8] = 39081;
-		test[9] = 25264;
-									
-		System.out.println(computacaoDoTempo(test));
-						
-	}*/
-	
+		
 	public static double computacaoDoTempo(double[] array) {
+		//Calcula os valores dentro do range desvio padrão e calcula a média aritimética
 		return mediaAritimetica(computacao(array));
 	}
 	
+	//calcula e retorna os valores dentro do desvio padrão
 	private static double[] computacao(double[] array) {
 		double media = mediaAritimetica(array);
 		double desvio = desvioPadrao(array);
@@ -47,12 +32,16 @@ public class SortUtils {
 		return arr;
 	}
 	
+	// calcula o desvio padrão;
 	public static double desvioPadrao(double[] objetos) {
-		if (objetos.length == 1) {
+		//se o array estiver vazio ou com length == 1 seu desvio padrão é 0 
+		if (objetos.length <= 1) {
 			return 0.0;
 		} else {
+			//calcula a média aritimética dos objetos
 			double mediaAritimetica = mediaAritimetica(objetos);
 			double somatorio = 0l;
+			// para cada objeto, é descontada a média aritimética para realizar  o calculo de desvio padrão
 			for (int i = 0; i < objetos.length; i++) {
 				double result = objetos[i] - mediaAritimetica;
 				somatorio = somatorio + result * result;
@@ -62,6 +51,7 @@ public class SortUtils {
 		}
 	}
 
+	//Calcula a média aritimética soma total / quantidade de elementos do array
 	public static double mediaAritimetica(double[] objetos) {
 		double somatorio = 0l;
 		for (double d : objetos) {
@@ -70,6 +60,7 @@ public class SortUtils {
 		return somatorio / objetos.length;
 	}
 	
+	// Gera valores crescentes de 0 até o tamanho -1 do array
 	public static Integer[] gerrarValoresCrescentes(int length) {
 		Integer[] array = new Integer[length];
 				
@@ -78,7 +69,8 @@ public class SortUtils {
 		}
 		return array;
 	}
-	
+
+	// Gera valores decrescentes partindo do valor do array -1 até 0 
 	public static Integer[] gerrarValoresDecrescentes(int length) {
 		Integer[] array = new Integer[length];
 				
@@ -89,18 +81,15 @@ public class SortUtils {
 		return array;
 	}
 	
+	//gera valores aleatórios utilizado o metodo gera valores crescentes
 	public static Integer[] gerarValoresAleatorios(int length) {
-		Integer[] array = new Integer[length];
-		
-		for (int i = 0; i < array.length; i++) {
-			array[i] = i;
-		}
-		
+		Integer[] array = gerrarValoresCrescentes(length);		
 		array = RandomizeArray(array);
 		
 		return array;
 	}
 
+	// realiza uma mesclagem aleatória de um array
 	private static Integer[] RandomizeArray(Integer[] array) {
 		Random r = new Random();
          for (int i = 0; i < array.length; i++)
@@ -113,6 +102,7 @@ public class SortUtils {
          return array;
 	}
 		
+	// gera um array com tamanho length com 6% de repetição de cada valor. 
 	public static Integer[] gerarValoresAleatoriosRepetidos(int length) {
 		Integer[] array = new Integer[length];
           int repetValues = (int)(length * 0.06);

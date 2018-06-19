@@ -5,20 +5,23 @@ import java.util.Arrays;
 public class main {
 	
 	public static void main(String[] args) {
+		//Array com os tamanhos dos arrays para executar os sorts.
 		int[] n = getLoopValues();	
 								
+		//Estrutura para gurdar os arrays de cada tamanho
 		Integer[][] valoresCrescentes = new Integer[10][];
 		Integer[][] valoresDecrescentes = new Integer[10][];
 		Integer[][] valoresAleatorios = new Integer[10][];
 		Integer[][] valoresAleatoriosRepetidos = new Integer[10][];
 		
-		
+		//Popula os valores para cada array
 		for (int i = 0; i < 10; i++) {
 			valoresCrescentes[i] = SortUtils.gerrarValoresCrescentes(n[i]);
 			valoresDecrescentes[i] = SortUtils.gerrarValoresDecrescentes(n[i]);
 			valoresAleatorios[i] = SortUtils.gerarValoresAleatorios(n[i]);
 			valoresAleatoriosRepetidos[i] =SortUtils.gerarValoresAleatoriosRepetidos(n[i]);
 		}
+		
 		System.out.printf("PRINT BUBBLE %n %n %n %n");
 		printBubble(valoresCrescentes.clone(), valoresDecrescentes.clone(), valoresAleatorios.clone(), valoresAleatoriosRepetidos.clone());
 		
@@ -42,6 +45,8 @@ public class main {
 		
 	}
 
+	//Metodos para imprimir os valores calculados para cada tipo de sort 
+	
 	private static void printBubble(Integer[][] valoresCrescentes, Integer[][] valoresDecrescentes,
 			Integer[][] valoresAleatorios, Integer[][] valoresAleatoriosRepetidos) {
 		System.out.println("Bubble Valores Crescentes");
@@ -211,6 +216,8 @@ public class main {
 		}
 	}
 	
+	//Metodos de Execução de sorts, executa 10x guarda os tempos e calcula a média	
+	
 	private static double executaQuick(Integer[] values) {
 		double[] tempos = new double[10];
 		
@@ -298,6 +305,7 @@ public class main {
 		return SortUtils.computacaoDoTempo(tempos);
 	}
 	
+	//retorna array com valores dos tamanhos dos arrays necessários para os calculos
 	private static int[] getLoopValues() {
 		int[] n = new int[10];
 		n[0] = 128; 
